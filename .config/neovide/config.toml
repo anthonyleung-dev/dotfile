@@ -1,0 +1,7 @@
+frame = "buttonless"
+title-hidden  = true
+
+[font]
+normal = ["Source Code Pro"]
+bold = ["Source Code Pro"]
+size = 16

@@ -1,0 +1,79 @@
+tap "FelixKratz/formulae"
+
+brew "openjdk"
+brew "neovim"
+brew "docker"
+brew "docker-compose"
+brew "colima", restart_service: true
+brew "rust"
+brew "nvm"
+brew "spicetify-cli"
+brew "neofetch"
+brew "borders"
+brew "sketchybar", restart_service: true
+brew "jq"
+brew "starship"
+brew "fzf"
+brew "switchaudio-osx"
+brew "mas"
+brew "stylua"
+brew "eza"
+brew "imagemagick"
+brew "shfmt"
+brew "tree-sitter"
+brew "nowplaying-cli"
+brew "awscli"
+brew "kubernetes-cli"
+brew "watch"
+
+# Zsh Plugins
+brew "zsh-syntax-highlighting" 
+brew "zsh-autosuggestions"
+
+# Search tool
+brew "ripgrep"
+# Java Language Server
+brew "jdtls"
+# Markdown Language Server
+brew "marksman"
+# Rust Language Server
+brew "rust-analyzer"
+# Python Formatter
+brew "autopep8"
+
+cask "ngrok"
+cask "bluesnooze"
+cask "1password"
+cask "1password-cli"
+cask "arc"
+cask "obsidian"
+cask "nikitabobko/tap/aerospace"
+cask "notion"
+cask "notion-calendar"
+cask "chatgpt"
+cask "spotify"
+cask "discord"
+cask "signal"
+cask "telegram"
+cask "whatsapp"
+cask "neovide"
+cask "figma"
+cask "tableplus"
+cask "google-chrome"
+cask "warp"
+cask "bruno"
+cask "whatsapp"
+cask "raycast"
+cask "nordvpn"
+cask "sf-symbols"
+cask "font-hack-nerd-font"
+cask "font-fira-code"
+cask "font-jetbrains-mono"
+cask "font-source-code-pro"
+cask "hammerspoon"
+cask "android-studio"
+cask "wezterm"
+
+mas "Keynote", id: 409183694
+mas "Numbers", id: 409203825
+mas "Xcode", id: 497799835

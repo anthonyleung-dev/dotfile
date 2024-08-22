@@ -1,0 +1,83 @@
+#!/usr/bin/env bash
+
+source "$HOME/.config/sketchybar/colors.sh"     # Loads all defined colors
+source "$HOME/.config/sketchybar/icons.sh"      # Loads all defined icons
+source "$HOME/.config/sketchybar/userconfig.sh" # Loads all defined icons
+
+# Setting up and starting the helper process
+HELPER=git.felix.helper
+killall helper
+cd "$HOME"/.config/sketchybar/helper && make
+"$HOME"/.config/sketchybar/helper/helper "$HELPER" >/dev/null 2>&1 &
+
+ITEM_DIR="$HOME/.config/sketchybar/items"            # Directory where the items are configured
+export PLUGIN_DIR="$HOME/.config/sketchybar/plugins" # Directory where all the plugin scripts are stored
+EVENTS_DIR="$HOME/.config/sketchybar/events"         # Directory where the event scripts are stored
+
+# Unload the macOS on screen indicator overlay for volume change
+launchctl unload -F /System/Library/LaunchAgents/com.apple.OSDUIHelper.plist >/dev/null 2>&1 &
+
+# Setting up the general bar appearance and default values
+sketchybar --bar height=39 \
+	color="$OP_MANTLE" \
+	shadow=on \
+	position=top \
+	sticky=on \
+	padding_right=10 \
+	padding_left=10 \
+	corner_radius=0 \
+	y_offset=0 \
+	margin=0 \
+	blur_radius=10 \
+	\
+	--default updates=when_shown \
+	icon.font="$NERD_FONT:Bold:16.0" \
+	icon.color="$ICON_COLOR" \
+	icon.padding_left="$PADDINGS" \
+	icon.padding_right="$PADDINGS" \
+	label.font="$FONT:Semibold:13.0" \
+	label.color="$TEXT" \
+	label.padding_left="$PADDINGS" \
+	label.padding_right="$PADDINGS" \
+	background.padding_right="$PADDINGS" \
+	background.padding_left="$PADDINGS" \
+	background.height=30 \
+	background.corner_radius=9 \
+	popup.horizontal=false \
+	popup.height=30 \
+	popup.background.border_width=2 \
+	popup.background.corner_radius=9 \
+	popup.background.border_color="$BLUE" \
+	popup.background.color="$MANTLE" \
+	popup.background.shadow.drawing=on
+
+source "$EVENTS_DIR/lock.sh"
+source "$EVENTS_DIR/toggle_stats.sh"
+
+# Left
+source "$ITEM_DIR/front_app.sh"
+source "$ITEM_DIR/aerospace.sh"
+source "$ITEM_DIR/music.sh"
+
+# Center
+
+# Right
+source "$ITEM_DIR/calendar.sh"
+
+source "$ITEM_DIR/docker.sh"
+source "$ITEM_DIR/wifi.sh"
+source "$ITEM_DIR/brew.sh"
+source "$ITEM_DIR/battery.sh"
+source "$ITEM_DIR/volume.sh"
+source "$ITEM_DIR/spacer.sh"
+source "$ITEM_DIR/telegram.sh"
+source "$ITEM_DIR/discord.sh"
+source "$ITEM_DIR/signal.sh"
+source "$ITEM_DIR/social.sh"
+source "$ITEM_DIR/notion_calendar.sh"
+
+# Forcing all item scripts to run (never do this outside of sketchybarrc)
+sketchybar --update
+sketchybar --hotload on
+
+echo "sketchybar configuation loaded.."
